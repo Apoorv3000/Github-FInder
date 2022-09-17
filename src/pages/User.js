@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Header from "../components/Header";
 import Loading from "../components/Loading";
-import { useGetUserQuery } from "../services/githubApi";
+import Pagination from "../components/Pagination";
+import RepoList from "../components/RepoList";
+import UserCard from "../components/UserCard";
+import { useGetReposQuery, useGetUserQuery } from "../services/githubApi";
 
 const User = () => {
   const { username } = useSelector((state) => state.currentUser);
-
+  const [page, setPage] = useState(1);
   const { data, isFetching, error } = useGetUserQuery({ username });
-  console.log(data);
+  const {
+    data: repos,
+    isFetching: loading,
+    error: fault,
+  } = useGetReposQuery({ username, page });
 
   if (isFetching) {
-    <Loading />;
+    return (
+      <div className="flex mt-2 justify-center">
+        <Loading />
+      </div>
+    );
   }
 
   if (data?.length == 0 || error) {
@@ -23,9 +35,22 @@ const User = () => {
       </div>
     );
   }
+  const totalPages = Math.floor(data?.public_repos / 10) + 1;
+  console.log(totalPages);
 
   if (!error) {
-    return <div className="text-white">{data?.name}</div>;
+    return (
+      <div>
+        <Header />
+        <UserCard user={data} />
+        <RepoList />
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={totalPages}
+        />
+      </div>
+    );
   }
 };
 

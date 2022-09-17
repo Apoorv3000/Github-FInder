@@ -14,9 +14,14 @@ const Home = () => {
     setUsername(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    dispatch(searchUser(username));
-    navigate("/user");
+  const handleSubmit = () => {
+    if (username) {
+      dispatch(searchUser(username));
+      navigate("/user");
+    } else {
+      console.log("error");
+      return <p className="text-white mt-10">Please enter a username</p>;
+    }
   };
 
   return (
@@ -41,11 +46,12 @@ const Home = () => {
             type="submit"
             className="border-none cursor-pointer  mt-4 hover:opacity-80 bg-[#f5f5f5]
            text-[#111111] 
-           font-normal text-[1rem] 
+           font-semibold text-xl  
            w-[13rem] flex items-center
             justify-center p-[20px] h-[3.8rem]
             md:rounded-tl-0 md:rounded-bl-0 md:rounded-tr-[10px] md:rounded-br-[10px] md:mt-0
             "
+            // disabled={!username ? "Please Enter Username" : null}
             onClick={handleSubmit}
           >
             Find
