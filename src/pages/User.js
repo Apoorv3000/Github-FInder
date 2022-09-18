@@ -25,6 +25,14 @@ const User = () => {
     );
   }
 
+  if (loading) {
+    return (
+      <div className="flex mt-2 justify-center">
+        <Loading />
+      </div>
+    );
+  }
+
   if (data?.length == 0 || error) {
     return (
       <div className="flex items-center justify-center text-lg mt-6">
@@ -43,7 +51,7 @@ const User = () => {
       <div>
         <Header />
         <UserCard user={data} />
-        <RepoList />
+        <RepoList repos={repos} />
         <Pagination
           currentPage={page}
           setPage={setPage}
