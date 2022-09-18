@@ -11,6 +11,7 @@ const User = () => {
   const { username } = useSelector((state) => state.currentUser);
   const [page, setPage] = useState(1);
   const { data, isFetching, error } = useGetUserQuery({ username });
+
   const {
     data: repos,
     isFetching: loading,
@@ -18,14 +19,6 @@ const User = () => {
   } = useGetReposQuery({ username, page });
 
   if (isFetching) {
-    return (
-      <div className="flex mt-2 justify-center">
-        <Loading />
-      </div>
-    );
-  }
-
-  if (loading) {
     return (
       <div className="flex mt-2 justify-center">
         <Loading />
@@ -50,8 +43,10 @@ const User = () => {
     return (
       <div>
         <Header />
-        <UserCard user={data} />
-        <RepoList repos={repos} />
+        <div className="flex md:flex-row  justify-center flex-col p-5 space-x-[4rem] ">
+          <UserCard user={data} />
+          <RepoList repos={repos} loading={loading} />
+        </div>
         <Pagination
           currentPage={page}
           setPage={setPage}
