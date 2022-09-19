@@ -13,11 +13,13 @@ const RepoList = ({ repos, loading }) => {
   }
 
   return (
-    <div className="text-white flex flex-col w-full">
-      {repos?.map((repo) => (
-        <Repo key={repo?.id} repo={repo} />
-      ))}
-    </div>
+    <>
+      <div className="text-white flex flex-col  w-[100%] items-center">
+        {repos?.map((repo) => (
+          <Repo key={repo?.id} repo={repo} />
+        ))}
+      </div>
+    </>
   );
 };
 
