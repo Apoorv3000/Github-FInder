@@ -12,8 +12,8 @@
 
 ### Install all the packages:
 
-#### npm install
+#### 'npm install'
 
 ### Start the server on localhost:
 
-#### npm start
+#### 'npm start'
