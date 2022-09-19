@@ -8,7 +8,7 @@
 
 ## How to run locally:
 
-### clone the repo by runnning:[git clone](https://github.com/Apoorv3000/Github-FInder.git)
+### clone the repo by runnning : Git clone (https://github.com/Apoorv3000/Github-FInder.git)
 
 ### Install all the packages:
 
