@@ -4,4 +4,4 @@
 
 ## In this project, you can search for Github users and visit their repositories easily and simply!
 
-## You can access :[Github Finder]() to try find someone
+## You can access :[Github Finder](https://github-finder-sepia-eta.vercel.app/) to try find someone
