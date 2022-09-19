@@ -8,12 +8,12 @@
 
 ## How to run locally:
 
-### clone the repo by runnning : Git clone https://github.com/Apoorv3000/Github-FInder.git
+### clone the repo by runnning : `git clone` https://github.com/Apoorv3000/Github-FInder.git
 
 ### Install all the packages:
 
-#### 'npm install'
+#### `npm install`
 
-### Start the server on localhost:
+### To start the server on localhost:
 
-#### 'npm start'
+#### `npm start`
