@@ -1,25 +1,16 @@
 import React from "react";
 
 const Pagination = ({ currentPage, setPage, totalPages }) => {
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const handlePrev = () => {
     if (currentPage !== 1) {
       setPage((prevPage) => prevPage - 1);
     }
-    goToTop();
   };
 
   const handleNext = () => {
     if (currentPage !== totalPages) {
       setPage((prevPage) => prevPage + 1);
     }
-    goToTop();
   };
 
   if (totalPages === 0) return null;

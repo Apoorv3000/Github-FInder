@@ -11,15 +11,13 @@ const User = () => {
   const { username } = useSelector((state) => state.currentUser);
   const [page, setPage] = useState(1);
   const { data, isFetching, error } = useGetUserQuery({ username });
-
-  const [showTopBtn, setShowTopBtn] = useState(false);
-
-  const pageDiv = useRef();
+  const pageDiv = useRef(null);
 
   useEffect(() => {
-    pageDiv.current.scrollIntoView({ behavior: "smooth" });
+    if (data) {
+      pageDiv.current.scrollIntoView({ behavior: "smooth" });
+    }
   });
-
   const {
     data: repos,
     isFetching: loading,
@@ -66,12 +64,9 @@ const User = () => {
 
   if (!error) {
     return (
-      <div>
+      <div ref={pageDiv}>
         <Header />
-        <div
-          ref={pageDiv}
-          className="flex lg:flex-row items-center lg:items-start flex-col p-5 lg:space-x-[4rem] "
-        >
+        <div className="flex lg:flex-row items-center lg:items-start flex-col p-5 lg:space-x-[4rem] ">
           <UserCard user={data} />
           <RepoList repos={repos} loading={loading} />
         </div>
