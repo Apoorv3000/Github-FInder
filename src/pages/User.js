@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
@@ -13,23 +13,12 @@ const User = () => {
   const { data, isFetching, error } = useGetUserQuery({ username });
 
   const [showTopBtn, setShowTopBtn] = useState(false);
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.pageXOffset > 400) {
-        setShowTopBtn(true);
-        console.log("1");
-      } else {
-        setShowTopBtn(false);
-      }
-    });
-  }, []);
 
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const pageDiv = useRef();
+
+  useEffect(() => {
+    pageDiv.current.scrollIntoView({ behavior: "smooth" });
+  });
 
   const {
     data: repos,
@@ -64,18 +53,13 @@ const User = () => {
     return (
       <div>
         <Header />
-        <div className="flex lg:flex-row items-center lg:items-start flex-col p-5 lg:space-x-[4rem] ">
+        <div
+          ref={pageDiv}
+          className="flex lg:flex-row items-center lg:items-start flex-col p-5 lg:space-x-[4rem] "
+        >
           <UserCard user={data} />
           <RepoList repos={repos} loading={loading} />
         </div>
-        {showTopBtn && (
-          <div
-            onClick={goToTop}
-            className="fixed py-4 px-6 rounded-md z-[1000] shadow-md text-[26px] bottom-10 right-10 bg-[#1f1c1c] font-bold text-white text-center"
-          >
-            ^
-          </div>
-        )}
 
         <Pagination
           currentPage={page}
