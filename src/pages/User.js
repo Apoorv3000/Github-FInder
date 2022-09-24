@@ -47,6 +47,21 @@ const User = () => {
       </>
     );
   }
+
+  if (error) {
+    return (
+      <>
+        <Header />
+        <div className="flex items-center justify-center text-lg mt-6">
+          <h4 className="font-bold text-white">
+            No UserName matches that developer <br /> Please Search for
+            something else
+          </h4>
+        </div>
+      </>
+    );
+  }
+
   const totalPages = Math.floor(data?.public_repos / 10) + 1;
 
   if (!error) {
