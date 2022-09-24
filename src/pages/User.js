@@ -60,7 +60,11 @@ const User = () => {
     );
   }
 
-  const totalPages = Math.floor(data?.public_repos / 10) + 1;
+  // const totalPages = Math.floor(data?.public_repos / 10) + 1;
+  const totalPages =
+    data?.public_repos % 10 === 0
+      ? Math.floor(data?.public_repos / 10)
+      : Math.floor(data?.public_repos / 10) + 1;
 
   if (!error) {
     return (
